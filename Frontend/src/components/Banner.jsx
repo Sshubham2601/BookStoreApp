@@ -3,12 +3,12 @@ import React from 'react'
 function Banner() {
           return (
                     <>
-                              <div className='max-w-screen-2xl container mx-auto md:px-20 px-4 flex flex-col md:flex-row my-10'>
-                                        <div className='order-2 md:order-1 w-full md:w-1/2 mt-10 md:mt-28'>
-                                                  <div className='space-y-12'>
-                                                            <h1 className='text-5xl font-bold'>Hello, welcome here to learn something {" "}
+                              <div className=' max-w-screen-2xl container mx-auto md:px-20 px-4 flex flex-col md:flex-row my-10 '>
+                                        <div className='w-full order-2 md:order-1 md:w-1/2 mt-12 md:mt-36'>
+                                                  <div className='space-y-8'>
+                                                            <h1 className='text-2xl md:text-4xl  font-extrabold'>Hello, welcome here to learn something {" "}
                                                                       <span className='text-pink-500'>new everyday!!!</span></h1>
-                                                            <p className='text-xl'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Distinctio illo, nemo laboriosam eius sunt qui optio libero necessitatibus doloribus, illum ducimus hic quae voluptate pariatur eveniet quos adipisci voluptatibus et exercitationem deserunt saepe cum excepturi!</p>
+                                                            <p className='text-base font-medium'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Distinctio illo, nemo laboriosam eius sunt qui optio libero necessitatibus doloribus, illum ducimus hic quae voluptate pariatur eveniet quos adipisci voluptatibus et exercitationem deserunt saepe cum excepturi!</p>
                                                             <label className="input flex items-center gap-2 border px-3" style={{ backgroundColor: '#f1f2f6', color: 'white' }} >
                                                                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="w-4 h-4 opacity-70 text-pink-500"> {/* Apply text-pink-500 class for pink color */}
                                                                                 <path d="M2.5 3A1.5 1.5 0 0 0 1 4.5v.793c.026.009.051.02.076.032L7.674 8.51c.206.1.446.1.652 0l6.598-3.185A.755.755 0 0 1 15 5.293V4.5A1.5 1.5 0 0 0 13.5 3h-11Z" />
@@ -24,8 +24,8 @@ function Banner() {
                                         </div>
 
 
-                                        <div className='order-1 w-full md:w-1/2'>
-                                                  <img  src="/Images/Banner.jpg" alt="" className='object-cover w-full h-full m-5 mb-10 pb-10 rounded ' />
+                                        <div className='order-1 w-full md:w-1/2 '>
+                                                  <img  src="/Images/banner2.png" alt="" className='w-full h-100 ' />
                                         </div>
                               </div>
                     </>

@@ -1,55 +1,127 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import Login from './Login';
-
+import React from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import Login from "./Login";
+import { useForm } from "react-hook-form";
+import axios from "axios";
+import toast from "react-hot-toast";
+// import toast from "react-hot-toast";
 function Signup() {
-  const [showModal, setShowModal] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || "/";
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  const handleLoginClick = () => {
-    setShowModal(true);
+  const onSubmit = async (data) => {
+    const userInfo = {
+      fullname: data.fullname,
+      email: data.email,
+      password: data.password,
+    };
+   await axios.post("http://localhost:8001/user/signup",userInfo)
+   .then((res)=>{
+    console.log(res.data)
+    if(res.data){
+      toast.success('SignUp Successfully!');
+      navigate(from,{replace:true});
+    }
+     localStorage.setItem("Users",JSON.stringify(rse.data.user))
+   }).catch((err)=>{
+    if(err.response){
+      console.log(err)
+      
+      toast.error("Error:"+err.response.data.message);
+
+    }
+   })
   };
-
-  const handleCloseModal = () => {
-    setShowModal(false);
-  };
-
   return (
     <>
-      <div className='flex items-center justify-center h-screen'>
-        <div id="my_modal_3" className={`modal-box bg-white ${showModal ? 'show' : ''}`}>
-          <div className="modal-box">
-            <form method="dialog">
-              {/* Close button */}
-              <button onClick={handleCloseModal} className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 ">✕</button>
+      <div className="flex h-screen items-center justify-center border grow outline-indigo-500">
+        <div className=" w-[600px] ">
+          <div className="modal-box text-black dark:text-white bg-white dark:bg-slate-800 border border-2xl">
+          <form method="dialog">
+              <Link
+                to="/"
+                className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+              >
+                ✕
+              </Link>
+              <h3 className="font-bold text-lg">Signup</h3>
+              <div className="mt-4 space-y-2">
+                <span>Name</span>
+                <br />
+                <input
+                  type="text"
+                  placeholder="Enter your fullname"
+                  className="w-80 px-3 py-1 border rounded-md outline-none bg-white dark:bg-slate-900"
+                  {...register("fullname", { required: true })}
+                />
+                <br />
+                {errors.fullname && (
+                  <span className="text-sm text-red-500">
+                    This field is required
+                  </span>
+                )}
+              </div>
+              {/* Email */}
+              <div className="mt-4 space-y-2">
+                <span>Email</span>
+                <br />
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  className="w-80 px-3 py-1 border rounded-md outline-none  bg-white dark:bg-slate-900"
+                  {...register("email", { required: true })}
+                />
+                <br />
+                {errors.email && (
+                  <span className="text-sm text-red-500">
+                    This field is required
+                  </span>
+                )}
+              </div>
+              {/* Password */}
+              <div className="mt-4 space-y-2">
+                <span>Password</span>
+                <br />
+                <input
+                  type="text"
+                  placeholder="Enter your password"
+                  className="w-80 px-3 py-1 border rounded-md outline-none  bg-white dark:bg-slate-900"
+                  {...register("password", { required: true })}
+                />
+                <br />
+                {errors.password && (
+                  <span className="text-sm text-red-500">
+                    This field is required
+                  </span>
+                )}
+              </div>
+              {/* Button */}
+              <div className="flex justify-around mt-4">
+                <button onClick={handleSubmit(onSubmit)} className="bg-pink-500 text-white rounded-md px-3 py-1 hover:bg-pink-700 duration-200">
+                  Signup
+                </button>
+                <p className="text-xl">
+                  Have account?{" "}
+            
+                   <Link to='/' className='underline text-blue-500 cursor-pointer'>
+                Login
+              </Link>{" "}
+                  
+                  {/* <Login /> */}
+                </p>
+              </div>
             </form>
-            <h3 className="font-bold text-lg dark:bg-slate-900 dark:text-white">SignUp</h3>
-            <div className='mt-6 space-y-2'>
-              <span>Name</span>
-              <br />
-              <input type="text" placeholder='Enter your name' className='w-80 px-4 py-1 border rounded-md outline-none' />
-            </div>
-            <div className='mt-6 space-y-2'>
-              <span>Email</span>
-              <br />
-              <input type="email" placeholder='Enter your email' className='w-80 px-4 py-1 border rounded-md outline-none' />
-            </div>
-            <div className='mt-6 space-y-2'>
-              <span>Password</span>
-              <br />
-              <input type="password" placeholder='Enter your password' className='w-80 px-4 py-1 border rounded-md outline-none' />
-            </div>
-            <div className='mt-4 flex justify-around '>
-              <button className='bg-pink-500 border-none rounded-md py-1 text-white px-4 hover:bg-pink-700 duration-200 cursor-pointer'>Signup</button>
-              <p>Have account?
-                <button className='underline text-blue-500 cursor-pointer' onClick={handleLoginClick}>Login</button>
-              </p>
-            </div>
           </div>
         </div>
       </div>
-      {showModal && <Login />}
     </>
-  )
+  );
 }
 
 export default Signup;

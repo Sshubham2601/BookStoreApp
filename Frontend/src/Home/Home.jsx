@@ -11,8 +11,9 @@ function Home() {
       <Banner />
       <Freebook />
       <Footer />
+      
     </>
   )
 }
 
-export default Home
+export default Home;

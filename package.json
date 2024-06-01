@@ -1,0 +1,22 @@
+{
+  "name": "bookstore",
+  "version": "1.0.0",
+  "description": "mern project",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sshubham2601/BookStoreApp.git"
+  },
+  "author": "Shubham",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sshubham2601/BookStoreApp/issues"
+  },
+  "homepage": "https://github.com/Sshubham2601/BookStoreApp#readme",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
